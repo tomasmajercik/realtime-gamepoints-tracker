@@ -1,0 +1,59 @@
+.autentif
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-direction: column;
+}
+.adminH1
+{
+    color: #eee;
+    margin-bottom: 10px;
+}
+form
+{
+    display: block;
+}
+
+
+.inputField {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    text-align: center;
+    letter-spacing: 15px;
+}
+
+.inputField:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Button styling */
+.autentifSubmitBtn {
+    width: 150px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.autentifSubmitBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Error message styling */
+.error {
+    margin-top: 15px;
+    font-size: 18px;
+    color: red;
+}
