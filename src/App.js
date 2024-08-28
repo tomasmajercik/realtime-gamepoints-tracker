@@ -13,28 +13,6 @@ function App()
   //variables 
   const [childrenList, setChildrenList] = useState([]);
 
-  // useEffect(() => {
-  //   const getChildrenList = async () =>
-  //   {
-  //     try
-  //     {
-  //       const data = await getDocs(collection(database, "score"));
-  //       // filter out the firebase bullsh*t stuff
-  //       const filteredData = data.docs.map((doc) => ({
-  //         ...doc.data(), 
-  //         id: doc.id,
-  //       }));
-  //       // sort based on points
-  //       const sortedData = filteredData.sort((a, b) => b.points - a.points);
-  //       setChildrenList(sortedData);
-  //     }
-  //     catch(err)
-  //     {
-  //       console.error(err);
-  //     }
-  //   };
-  //   getChildrenList();
-  // }, [])
   useEffect(() => 
   {
     const unsubscribe = onSnapshot(collection(database, "score"), (snapshot) => 

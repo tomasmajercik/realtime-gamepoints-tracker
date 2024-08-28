@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import './background.css';
 import { database } from '../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, onSnapshot } from 'firebase/firestore';
+
+import AddPlayer from '../components/addPlayer';
 
 //imgs
 import loadedGif from '../imgs/loaded.gif';
@@ -14,6 +16,8 @@ function Background()
   const [childrenList, setChildrenList] = useState([]);
   const [error, setError] = useState("");
   const [operation, setOperation] = useState('add');
+
+  const [showModal, setShowModal] = useState(false);
 
   const [showGif, setShowGif] = useState(false);
 
@@ -31,29 +35,41 @@ function Background()
     }
   }, [navigate]);
 
-  useEffect(() => {
-    const getChildrenList = async () =>
-    {
-      try
-      {
-        const data = await getDocs(collection(database, "score"));
-        // filter out the firebase bullsh*t stuff
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(), 
-          id: doc.id,
-        }));
-        // sort based on points
-        const sortedData = filteredData.sort((a, b) => b.points - a.points);
-        setChildrenList(sortedData);
-      }
-      catch(err)
-      {
-        console.error(err);
-      }
-    };
-    getChildrenList();
-  }, [])
+//   useEffect(() => {
+//     const getChildrenList = async () =>
+//     {
+//       try
+//       {
+//         const data = await getDocs(collection(database, "score"));
+//         // filter out the firebase bullsh*t stuff
+//         const filteredData = data.docs.map((doc) => ({
+//           ...doc.data(), 
+//           id: doc.id,
+//         }));
+//         // sort based on points
+//         const sortedData = filteredData.sort((a, b) => b.points - a.points);
+//         setChildrenList(sortedData);
+//       }
+//       catch(err)
+//       {
+//         console.error(err);
+//       }
+//     };
+//     getChildrenList();
+//   }, [])
 
+useEffect(() => {
+    const unsubscribe = onSnapshot(collection(database, "score"), (snapshot) => {
+      const childrenData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const sortedData = childrenData.sort((a, b) => b.points - a.points);
+      setChildrenList(sortedData);
+    });
+
+    return () => unsubscribe(); // Cleanup listener on component unmount
+  }, []);
 
   const selectBtnClick = (child) =>
   {
@@ -100,8 +116,11 @@ function Background()
     }
 
   };
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
-
+  
 
   // Layout
   return (
@@ -112,7 +131,14 @@ function Background()
         </div>
     }
 
-    <button className='addPlayer'>+</button>
+    <button className='addPlayer' onClick={toggleModal}>+</button>
+
+    <AddPlayer 
+        showModal={showModal} 
+        toggleModal={toggleModal} 
+    />
+      
+    
     
       <div>
         <h1 className='bckH1'>Pridať alebo ubrať body:</h1>
