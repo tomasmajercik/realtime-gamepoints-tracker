@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Admin from './pages/admin';
 import Background from './pages/background';
 import Redirect from './pages/redirect';
+import Shop from './pages/shop';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/redirect",
     element: <Redirect/>
+  },
+  {
+    path: "/shop",
+    element: <Shop/>
   },
   {
     path: "*",

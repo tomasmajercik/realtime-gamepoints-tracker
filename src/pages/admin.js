@@ -21,10 +21,16 @@ function Admin()
   const handleSubmit = (event) =>
   {
     event.preventDefault();
-    if(code === "hdq4583qrT")
+    if(code === "hdq4583qrs")
     {
       localStorage.setItem('preventFromReturn', 'false');
         navigate("/redirect");
+        localStorage.setItem('autentif', 'true');
+    }
+    else if(code === "hdq4583qro")
+    {
+      localStorage.setItem('preventFromReturn', 'false');
+        navigate("/shop");
         localStorage.setItem('autentif', 'true');
     }
     else
