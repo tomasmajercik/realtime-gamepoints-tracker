@@ -136,3 +136,55 @@
     background-color: #C387DB;
     color: #222;
 }
+
+@media only screen and (max-width: 1320px)
+{
+    #childrenTableAdmin
+    {
+        width: 70%;
+    }
+
+}
+
+@media only screen and (max-width: 940px)
+{
+    #childrenTableAdmin
+    {
+        width: 90%;
+    }
+    .addBtn
+    {
+        width: 80px;
+    }
+    .addMoreBtn
+    {
+        width: 100px;
+    }
+    .limiter
+    {
+        width: 100px;
+    }
+
+}
+@media only screen and (max-width: 510px)
+{
+    #childrenTableAdmin
+    {
+        width: 90%;
+    }
+    .addBtn
+    {
+        width: 50px;
+        font-size: 15px;
+    }
+    .addMoreBtn
+    {
+        width: 60px;
+        font-size: 15px;
+    }
+    .limiter
+    {
+        width: 100px;
+    }
+
+}

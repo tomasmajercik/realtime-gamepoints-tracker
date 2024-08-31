@@ -166,7 +166,7 @@ function Background()
             {
               childrenList.map((children) => (
                 <tr key={children.id}>
-                  <td>{children.name}</td>
+                  <td className='limiter'>{children.name}</td>
                   <td>
                     <button 
                       className='addBtn' 
